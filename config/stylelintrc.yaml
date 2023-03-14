@@ -1,0 +1,318 @@
+extends:
+  - "@valtech-commerce/stylelint-config/core"
+  - "stylelint-config-css-modules"
+
+rules:
+  #-- Disabled rules
+
+  selector-class-pattern: null # https://github.com/css-modules/css-modules#naming
+  declaration-property-value-disallowed-list: null # Need to use rem unit
+  color-function-notation: null
+  comment-empty-line-before: null
+  declaration-block-trailing-semicolon: null
+  no-descending-specificity: null
+
+  #-- New and updated rules
+
+  indentation: 4
+  number-leading-zero: always # Incompatible with Prettier | https://github.com/prettier/prettier-vscode/issues/493
+
+  unit-allowed-list:
+    - - rem
+      - em
+      - fr
+      - "%"
+      - vw
+      - vh
+      - ms
+      - s
+      - deg
+    - severity: warning
+      message: Should be converted to rem units
+
+  declaration-block-no-duplicate-properties:
+    - true
+    - ignoreProperties:
+        - composes
+
+  value-keyword-case:
+    - lower
+    - ignoreProperties:
+        - composes
+
+  value-list-comma-newline-after: "always-multi-line"
+  value-list-comma-space-after: "always-single-line"
+  declaration-colon-space-after: "always-single-line"
+
+  declaration-empty-line-before:
+    - never
+    - ignore: "first-nested"
+
+  scale-unlimited/declaration-strict-value:
+    - - z-index
+      - /-radius/
+      - /color/
+      - font-family
+      - font-size
+      - font-weight
+
+    - ignoreValues:
+        "":
+          - currentColor
+          - inherit
+          - transparent
+
+        z-index:
+          - "-1"
+          - auto
+      disableFix: true
+      severity: warning # Change to warning only
+
+  order/properties-order:
+    - # Custom
+      - groupName: "Module CSS"
+        properties:
+          - composes
+          - apply
+
+      # Core
+      - groupName: "Content"
+        properties:
+          - content
+          - quotes
+
+      - groupName: "Position"
+        properties:
+          - position
+          - top
+          - right
+          - bottom
+          - left
+          - z-index
+
+      - groupName: "Element"
+        properties:
+          - appearance
+          - display
+          - float
+          - clear
+          - overflow
+          - overflow-x
+          - overflow-y
+          - overflow-style
+          - overflow-wrap
+          - overflow-scrolling # Not W3C
+          - clip
+          - clip-path
+          - clip-rule
+          - visibility
+          - opacity
+          - vertical-align
+          - resize
+
+      - groupName: "Flex"
+        properties:
+          - flex
+          - flex-grow
+          - flex-shrink
+          - flex-basis
+          - flex-flow
+          - flex-direction
+          - flex-wrap
+          - justify-items
+          - justify-content
+          - justify-self
+          - align-items
+          - align-content
+          - align-self
+          - order
+
+      - groupName: "List"
+        properties:
+          - list-style
+          - list-style-type
+          - list-style-position
+          - list-style-image
+          - counter-reset
+          - counter-set
+          - counter-increment
+
+      - groupName: "Dimension"
+        properties:
+          - box-sizing
+          - width
+          - min-width
+          - max-width
+          - height
+          - min-height
+          - max-height
+          - padding
+          - padding-top
+          - padding-right
+          - padding-bottom
+          - padding-left
+          - border
+          - border-top
+          - border-right
+          - border-bottom
+          - border-left
+          - border-width
+          - border-top-width
+          - border-right-width
+          - border-bottom-width
+          - border-left-width
+          - border-style
+          - border-top-style
+          - border-right-style
+          - border-bottom-style
+          - border-left-style
+          - border-color
+          - border-top-color
+          - border-right-color
+          - border-bottom-color
+          - border-left-color
+          - border-radius
+          - border-top-left-radius
+          - border-top-right-radius
+          - border-bottom-left-radius
+          - border-bottom-right-radius
+          - border-image
+          - border-image-source
+          - border-image-slice
+          - border-image-width
+          - border-image-outset
+          - border-image-repeat
+          - margin
+          - margin-top
+          - margin-right
+          - margin-bottom
+          - margin-left
+          - outline
+          - outline-width
+          - outline-style
+          - outline-color
+          - outline-offset
+          - box-shadow
+
+      - groupName: "Background"
+        properties:
+          - background
+          - background-color
+          - background-image
+          - background-position
+          - background-size
+          - background-repeat
+          - background-origin
+          - background-clip
+          - background-attachment
+          - background-blend-mode
+
+      - groupName: "Text"
+        properties:
+          - color
+          - font
+          - font-family
+          - font-size
+          - font-size-adjust
+          - font-weight
+          - font-style
+          - font-kerning
+          - font-stretch
+          - font-variant
+          - font-variant-alternates
+          - font-variant-caps
+          - font-variant-east-asian
+          - font-variant-ligatures
+          - font-variant-numeric
+          - font-variant-position
+          - font-variation-settings
+          - font-feature-settings
+          - font-language-override
+          - text-align
+          - text-align-all
+          - text-align-last
+          - text-justify
+          - text-indent
+          - text-transform
+          - text-decoration
+          - text-decoration-line
+          - text-decoration-style
+          - text-decoration-color
+          - text-decoration-skip
+          - text-underline-position
+          - text-shadow
+          - text-combine-upright
+          - text-orientation
+          - text-overflow
+          - text-emphasis
+          - text-emphasis-style
+          - text-emphasis-color
+          - text-emphasis-position
+          - line-height
+          - direction
+          - letter-spacing
+          - tab-size
+          - white-space
+          - word-break
+          - word-spacing
+          - word-wrap
+
+      - groupName: "Table"
+        properties:
+          - caption-side
+          - table-layout
+          - border-collapse
+          - border-spacing
+          - empty-cells
+          - columns
+          - column-gap
+          - column-fill
+          - column-rule
+          - column-span
+          - column-count
+          - column-width
+
+      - groupName: "Alteration"
+        properties:
+          - filter
+          - transform
+          - transform-origin
+          - transform-box
+
+      - groupName: "Transition"
+        properties:
+          - transition
+          - transition-property
+          - transition-duration
+          - transition-timing-function
+          - transition-delay
+
+      - groupName: "Animation"
+        properties:
+          - animation
+          - animation-name
+          - animation-duration
+          - animation-timing-function
+          - animation-delay
+          - animation-iteration-count
+          - animation-direction
+          - animation-fill-mode
+          - animation-play-state
+
+      - groupName: "Cursor"
+        properties:
+          - cursor
+          - user-select
+
+    - unspecified: bottomAlphabetical
+
+  #-- Tailwind
+
+  at-rule-no-unknown:
+    - true
+    - ignoreAtRules:
+        - tailwind
+        - apply
+        - variants
+        - responsive
+        - screen
