@@ -1,0 +1,29 @@
+name: Adobe - GitHub Actions - Continuous Deployment (CD) - Deploy packages to npmjs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call_workflow_setup:
+    name: Setup environment
+    uses: ./.github/workflows/reusable-workflow-setup.yml
+    with:
+      branch-ref: ${{ github.head_ref }}
+    secrets:
+<<<<<<< HEAD:.github/workflows/deploy-npmjs.yml
+=======
+      # github-token: ${{ secrets.GLOBAL_ACCESS_TOKEN }}
+>>>>>>> db161a5... Update:.github/workflows/deploy-packagist.yml
+      auth-token: ${{ secrets.CA_MTLA_VALTECH_ADOBE_PRACTICE_NPMJS_TOKEN }}
+  # call_workflow_build:
+  #   name: Build project
+  #   needs: [ call_workflow_setup ]
+  #   uses: ./.github/workflows/reusable-workflow-build.yml
+  call_workflow_publish:
+    name: Publish packages
+    needs: [ call_workflow_build ]
+    uses: ./.github/workflows/reusable-workflow-publish.yml
+    secrets:
+      auth-token: ${{ secrets.CA_MTLA_VALTECH_ADOBE_PRACTICE_NPMJS_TOKEN }}
