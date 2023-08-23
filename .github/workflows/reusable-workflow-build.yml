@@ -15,10 +15,7 @@ jobs:
           path: ./*
           key: checkout-repository-cache-${{ github.sha }}
 
-<<<<<<< HEAD
       # If we need to have some build process, put here
-=======
->>>>>>> db161a5... Update
       # - name: Build project via 'ci:build' npm script
       #   shell: bash
       #   run: npm run ci:build
