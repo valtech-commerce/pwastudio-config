@@ -1,0 +1,30 @@
+name: Adobe reusable workflows - Build to npmjs
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    name: Build project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch checkout-repository-cache
+        uses: actions/cache@v3
+        id: checkout-repository-cache
+        with:
+          path: ./*
+          key: checkout-repository-cache-${{ github.sha }}
+
+      # If we need to have some build process, put here
+      # - name: Build project via 'ci:build' npm script
+      #   shell: bash
+      #   run: npm run ci:build
+
+      - name: Create build-cache
+        uses: actions/cache@v3
+        id: build-cache
+        with:
+          path: |
+            ./*
+            !./node_modules
+          key: build-cache-${{ github.sha }}

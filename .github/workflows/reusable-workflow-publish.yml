@@ -1,0 +1,32 @@
+name: Adobe reusable workflows - Publish to npmjs
+
+on:
+  workflow_call:
+    secrets:
+      auth-token:
+        required: true
+
+jobs:
+  publish:
+    name: Publish packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch build-cache
+        uses: actions/cache@v3
+        id: build-cache
+        with:
+          path: |
+            ./*
+            !./node_modules
+          key: build-cache-${{ github.sha }}
+
+      - name: Publish to registry
+        shell: bash
+        run: |
+          OPTS=();
+          if [[ $(npm pkg get version) == *"-"* ]]; then OPTS+=('--tag=next') ; fi
+          if [[ $(npm pkg get workspaces) != "{}" ]]; then OPTS+=('--workspaces') ; fi
+          npm publish $OPTS --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.auth-token }}
