@@ -316,3 +316,7 @@ rules:
         - variants
         - responsive
         - screen
+  function-no-unknown:
+    - true
+    - ignoreFunctions:
+        - 'theme'

@@ -35,6 +35,8 @@
     "jsx-a11y",
     "react-hooks",
     "unicorn",
+    "ordered-imports",
+    "prettier",
     "package-json"
   ],
   "rules": {
@@ -118,7 +120,7 @@
       }
     ],
     "arrow-body-style": [
-      "error",
+      "off",
       "as-needed",
       {
         "requireReturnForObjectLiteral": false
@@ -187,7 +189,7 @@
       }
     ],
     "class-methods-use-this": [
-      "error",
+      "off",
       {
         "enforceForClassFields": true,
         "exceptMethods": [
@@ -419,7 +421,7 @@
       "error"
     ],
     "import/exports-last": [
-      "error"
+      "off"
     ],
     "import/extensions": [
       "error",
@@ -434,7 +436,7 @@
       "error"
     ],
     "import/group-exports": [
-      "error"
+      "off"
     ],
     "import/imports-first": [
       "off"
@@ -1022,7 +1024,7 @@
       }
     ],
     "logical-assignment-operators": [
-      "error"
+      "off"
     ],
     "max-classes-per-file": [
       "error",
@@ -1500,7 +1502,7 @@
       "error"
     ],
     "no-plusplus": [
-      "error"
+      "off"
     ],
     "no-process-env": [
       "off"
@@ -1611,7 +1613,7 @@
       }
     ],
     "no-restricted-syntax": [
-      "error",
+      "off",
       {
         "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.",
         "selector": "ForInStatement"
@@ -1709,7 +1711,7 @@
       "off"
     ],
     "no-underscore-dangle": [
-      "error",
+      "off",
       {
         "allow": [
           "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
@@ -1912,6 +1914,43 @@
         "overrides": {
           "=": "none"
         }
+      }
+    ],
+    "ordered-imports/ordered-imports": [
+      "error",
+      {
+        "declaration-ordering": [
+          "name",
+          "case-insensitive"
+        ],
+        "group-ordering": [
+          {
+            "match": "^react",
+            "name": "react",
+            "order": 10
+          },
+          {
+            "match": "^@",
+            "name": "project root",
+            "order": 30
+          },
+          {
+            "match": "^\\.\\.",
+            "name": "parent directories",
+            "order": 40
+          },
+          {
+            "match": "^\\.",
+            "name": "current directory",
+            "order": 50
+          },
+          {
+            "match": ".*",
+            "name": "third-party",
+            "order": 20
+          }
+        ],
+        "specifier-ordering": "case-insensitive"
       }
     ],
     "package-json/order-properties": [
@@ -2558,7 +2597,7 @@
       "off"
     ],
     "require-unicode-regexp": [
-      "error"
+      "off"
     ],
     "require-yield": [
       "error"
@@ -2944,7 +2983,7 @@
       "error"
     ],
     "unicorn/prefer-module": [
-      "error"
+      "off"
     ],
     "unicorn/prefer-native-coercion-functions": [
       "error"
@@ -2953,7 +2992,7 @@
       "error"
     ],
     "unicorn/prefer-node-protocol": [
-      "error"
+      "off"
     ],
     "unicorn/prefer-number-properties": [
       "error"
