@@ -319,4 +319,4 @@ rules:
   function-no-unknown:
     - true
     - ignoreFunctions:
-        - 'theme'
+        - "theme"

@@ -110,7 +110,6 @@ rules:
 
   react-hooks/exhaustive-deps: [warn] # Until we decide on a strategy for refactoring useEffect with an empty array
 
-
 overrides:
   - files: ["*.spec.js"]
     env:
