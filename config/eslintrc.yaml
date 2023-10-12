@@ -1,6 +1,7 @@
 extends:
   - "plugin:jsx-a11y/recommended" # (from @magento/eslint-config)
   - "plugin:package-json/recommended" # (from @magento/eslint-config)
+  - "plugin:ordered-imports/recommended"
   - "@valtech-commerce/eslint-config/react"
 
 globals:
@@ -16,28 +17,74 @@ globals:
 
 plugins:
   - "package-json" # (from @magento/eslint-config)
+  - "prettier"
+  - "ordered-imports"
 
 rules:
+  camelcase: [off]
+  padded-blocks: [off]
+  arrow-body-style: [off]
+  import/group-exports: [off]
+  require-unicode-regexp: [off]
+  import/exports-last: [off]
+  # https://github.com/KyleMayes/eslint-plugin-ordered-imports/blob/master/README.md
+  ordered-imports/ordered-imports:
+    - error
+    - declaration-ordering:
+        - name
+        - case-insensitive
+      specifier-ordering: case-insensitive
+      group-ordering:
+        - name: react
+          match: ^react
+          order: 10
+        - name: project root
+          match: ^@
+          order: 30
+        - name: parent directories
+          match: ^\.\.
+          order: 40
+        - name: current directory
+          match: ^\.
+          order: 50
+        - name: third-party
+          match: .*
+          order: 20
+  logical-assignment-operators: [off]
+  class-methods-use-this: [off]
   no-undef: [off]
   no-restricted-globals:
     - error
     - name: "window"
       message: "Use globalThis instead"
-  camelcase: [off] # Not compatible with Magento naming convention
-  padded-blocks: [off] # Made the code look less structured
   no-prototype-builtins: [off]
   no-useless-escape: [off]
+  no-plusplus: [off]
+  no-restricted-syntax: [off]
+  no-underscore-dangle: [off]
   no-restricted-imports:
     - error
     - paths:
         - name: "@magento/venia-ui/lib/classify"
           importNames: ["mergeClasses"]
           message: 'Please import "useStyle" instead.'
-
+  unicorn/prevent-abbreviations:
+    - error
+    - checkProperties: true
+      checkFilenames: false
+      replacements:
+        params: false
+        props: false
+        ref: false
+      allowList:
+        propClasses: true
+        useParams: true
   unicorn/no-keyword-prefix: [off]
   unicorn/template-indent:
     - error
     - indent: 4
+  unicorn/prefer-module: [off]
+  unicorn/prefer-node-protocol: [off]
 
   react/jsx-no-literals:
     - error

@@ -195,7 +195,8 @@
       true,
       {
         "ignoreFunctions": [
-          "global"
+          "global",
+          "theme"
         ]
       }
     ],

@@ -1,6 +1,6 @@
 {
 	"name": "@valtech-commerce/pwastudio-config",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Valtech_Commerce PWA Studio configurations",
 	"definition": "",
 	"homepage": "https://github.com/valtech-commerce/pwastudio-config",
@@ -27,7 +27,7 @@
 		"url": "https://github.com/valtech-commerce/pwastudio-config/issues"
 	},
 	"engines": {
-		"node": ">= 16"
+		"node": ">= 14"
 	},
   "main": "./src/config/eslint.js",
 	"exports": {
@@ -46,8 +46,8 @@
 		"script:fixtures": "node ./scripts/generate-fixtures.js"
 	},
 	"devDependencies": {
-    "sort-json": "^2.0.1"
-  },
+		"sort-json": "^2.0.1"
+	},
 	"dependencies": {
 		"@valtech-commerce/eslint-config": "^4.0.0-rc.3",
 		"@valtech-commerce/fs": "^1.7.0",
@@ -55,7 +55,9 @@
 		"@valtech-commerce/stylelint-config": "^3.2.0"
 	},
 	"peerDependencies": {
-    "eslint-plugin-package-json": "^0.1.4",
-		"stylelint-config-css-modules": "^4.1.0"
+    	"eslint-plugin-package-json": "^0.1.4",
+		"stylelint-config-css-modules": "^4.1.0",
+		"eslint-plugin-ordered-imports": "^0.6.0",
+		"eslint-plugin-prettier": "^3.4.0"
 	}
 }
